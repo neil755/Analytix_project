@@ -1,0 +1,101 @@
+<odoo>
+    <data>
+
+
+        <record model="ir.ui.view" id="frontdesk.list">
+            <field name="name">frontdesk</field>
+            <field name="model">frontdesk.frontdesk</field>
+            <field name="arch" type="xml">
+                <form string="FrontDesk Form">
+
+                    <header>
+                        <button name="push_to_crm" string="Push to CRM" type="object" class="oe_highlight"/>
+
+                    </header>
+                    <p class="oe_view_nocontent_create">
+                        Enter a new visitor record or select from any of the matching existing records. Matching records
+                        are displayed as you start typing a visitor's information.
+                    </p>
+                    <sheet>
+
+                        <group>
+                            <group>
+                                <field name="start_date"/>
+                                <field name="end_date"/>
+                                <field name="serial_number"/>
+                                <field name="name" placeholder="Full Name" required="True"/>
+                                <field name="phone" placeholder="Enter to receive visit SMS notifications"
+                                       required="True"/>
+                                <field name="email" placeholder="Enter to receive visit notification emails"
+                                       required="True"/>
+                                <field name="country" placeholder="Add Location" required="True"/>
+                                <field name="client_type" required="True"/>
+                                <field name="org" placeholder="Organization name" required="True"/>
+                                <field name="purpose" required="True"/>
+                                <field name="type" required="True" placeholder="Select the license type"/>
+                                <field name="user" options="{'no_quick_create': True,'no_create_edit': True}"
+                                       required="True"/>
+                                <field name="lead_owner" options="{'no_quick_create': True,'no_create_edit': True}"
+                                       required="True"/>
+                                <field name="final" required="True"/>
+                                <field name="campaign" required="True"/>
+
+
+                            </group>
+
+
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+
+
+                </form>
+            </field>
+
+        </record>
+        <!-- Define Tree View -->
+        <record model="ir.ui.view" id="frontdesk_tree_view">
+            <field name="name">frontdesk tree</field>
+            <field name="model">frontdesk.frontdesk</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="serial_number"/>
+                    <field name="name"/>
+                    <field name="phone"/>
+                    <field name="email"/>
+                    <field name="org"/>
+                    <field name="purpose"/>
+                    <field name="user"/>
+                    <field name="type"/>
+                    <field name="client_type"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Update Action to Include Tree View -->
+        <record id="action_frontdesk_list" model="ir.actions.act_window">
+            <field name="name">FrontDesk Form</field>
+            <field name="res_model">frontdesk.frontdesk</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="frontdesk_tree_view"/> <!-- Reference to Tree View -->
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Click the "New" button to create a new Front Desk form.
+                </p>
+            </field>
+        </record>
+
+
+        <menuitem id="menu_frontdesk_form"
+                  name="FrontDesk"
+                  action="action_frontdesk_list"
+                  sequence="10"
+                  web_icon="frontdesk,static/src/img/icon.png"/>
+
+
+    </data>
+</odoo>
