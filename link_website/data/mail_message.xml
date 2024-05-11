@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- Sale-related subtypes for messaging / Chatter -->
+        <record id="link_website" model="mail.message.subtype">
+            <field name="name">Website Lead Generated!</field>
+            <field name="res_model">link_website.link_website</field>
+            <field name="default" eval="False"/>
+            <field name="description">New Lead Added!</field>
+        </record>
+
+    </data>
+</odoo>
