@@ -1,0 +1,22 @@
+<odoo>
+    <data>
+        <record id="crm_lead_view_form" model="ir.ui.view">
+            <field name="name">crm.lead.form</field>
+            <field name="model">crm.lead</field>
+            <field name="inherit_id" ref="crm.crm_lead_view_form"/>
+            <field name="arch" type="xml">
+
+                <header>
+                    <xpath expr="//button[@name='onboard_survey_id']" position="after">
+
+                        <button name="button_generate_reference_no" string="Generate Ref.No" type="object"
+                                class="oe_highlight"
+                                invisible="button_generate_reference_no"/>
+                    </xpath>
+                </header>
+                <field name="button_generate_reference_no" invisible="1"/>
+
+            </field>
+        </record>
+    </data>
+</odoo>
