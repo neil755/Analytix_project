@@ -1,0 +1,20 @@
+<odoo>
+    <data>
+        <record id="crm_lead_view_form" model="ir.ui.view">
+            <field name="name">crm.lead.form</field>
+            <field name="model">crm.lead</field>
+            <field name="inherit_id" ref="crm.crm_lead_view_form"/>
+            <field name="arch" type="xml">
+                <header>
+                    <xpath expr="//button[@name='action_convert_to_opportunity']" position="after">
+                        <button name="button_generate_reference_no" string="Generate Ref.No" type="object"
+                            class="oe_highlight" invisible="type == 'opportunity'"/>
+                    </xpath>
+                </header>
+                <xpath expr="//field[@name='user_id']" position="after">
+                    <field name="generate_reference_no" invisible="1"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
