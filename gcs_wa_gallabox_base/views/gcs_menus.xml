@@ -1,0 +1,30 @@
+<!--<?xml version="1.0" encoding="UTF-8"?>-->
+<!--<odoo>-->
+
+<!--    <menuitem id="gcs_whatsapp_main_menu"-->
+<!--              name="Whatsapp"-->
+<!--              parent="base.menu_custom"-->
+<!--              sequence="2"/>-->
+
+<!--    <menuitem id="gcs_whatsapp_menu"-->
+<!--              name="Whatsapp Logs"-->
+<!--              parent="gcs_wa_gallabox_base.gcs_whatsapp_main_menu"-->
+<!--              sequence="1"-->
+<!--              action="gcs_whatsapp_action"/>-->
+
+
+<!--    <menuitem id="gcs_whatsapp_template_menu"-->
+<!--              name="Whatsapp Templates"-->
+<!--              parent="gcs_wa_gallabox_base.gcs_whatsapp_main_menu"-->
+<!--              sequence="2"-->
+<!--              action="gcs_whatsapp_template_action"/>-->
+
+<!--    <menuitem id="gcs_whatsapp_config_menu"-->
+<!--              name="Whatsapp Configuration"-->
+<!--              parent="gcs_wa_gallabox_base.gcs_whatsapp_main_menu"-->
+<!--              action="gcs_whatsapp_config_action"-->
+<!--              sequence="0"/>-->
+
+<!--</odoo>-->
+
+
