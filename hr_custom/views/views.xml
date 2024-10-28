@@ -1,0 +1,110 @@
+<odoo>
+    <data>
+        <record id="view_hr_applicant_form_inherit" model="ir.ui.view">
+            <field name="name">hr.applicant.form.inherit</field>
+            <field name="model">hr.applicant</field>
+            <field name="inherit_id" ref="hr_recruitment.hr_applicant_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='interviewer_ids']" position="before">
+                    <field name="apply_date"/>
+                </xpath>
+                <xpath expr="//field[@name='email_from']" position="after">
+                    <field name="personal_email"/>
+                </xpath>
+                <xpath expr="//field[@name='partner_mobile']" position="after">
+                    <field name="location_add"/>
+                </xpath>
+                <xpath expr="//field[@name='user_id']" position="after">
+
+                    <field name="appli_status"/>
+                    <field name="qualification"/>
+                    <field name="time_join"/>
+                    <field name="work_exp"/>
+                    <field name="total_exp"/>
+                    <field name="change_reason"/>
+                    <field name="email_confirm"/>
+                    <field name="offer_accept"/>
+                </xpath>
+                <xpath expr="//field[@name='type_id']" position="after">
+
+                    <field name="com_skill" widget="priority" optional="show"/>
+                    <field name="eng_skill" widget="priority" optional="show"/>
+                    <field name="exl_skill" widget="priority" optional="show"/>
+                    <field name="tec_skill" widget="priority" optional="show"/>
+                    <field name="behaviour_analysis"/>
+                    <field name="company_procedure"/>
+                    <field name="hr_feedback"/>
+                    <field name="mgr_feedback"/>
+                    <field name="remark_msg"/>
+                    <field name="others_reason" readonly="1"/>
+
+
+                </xpath>
+
+
+            </field>
+        </record>
+        <record id="view_hr_applicant_kanban_inherit" model="ir.ui.view">
+            <field name="name">hr.applicant.kanban.inherit</field>
+            <field name="model">hr.applicant</field>
+            <field name="inherit_id" ref="hr_recruitment.hr_kanban_view_applicant"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@class='oe_kanban_content']" position="inside">
+                    <field name="appli_status" widget="badge"/>
+                </xpath>
+            </field>
+        </record>
+        <record id="view_hr_applicant_tree_inherit" model="ir.ui.view">
+            <field name="name">hr.applicant.tree.inherit</field>
+            <field name="model">hr.applicant</field>
+            <field name="inherit_id" ref="hr_recruitment.crm_case_tree_view_job"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='partner_name']" position="after">
+                    <field name="personal_email"/>
+                    <field name="location_add"/>
+                    <field name="apply_date"/>
+                    <field name="appli_status"/>
+                    <field name="qualification"/>
+                    <field name="time_join"/>
+                    <field name="work_exp"/>
+                    <field name="change_reason"/>
+                    <field name="email_confirm"/>
+                    <field name="offer_accept"/>
+                    <field name="behaviour_analysis"/>
+                    <field name="company_procedure"/>
+                    <field name="others_reason"/>
+
+                </xpath>
+            </field>
+        </record>
+
+        <!-- Search view modification -->
+        <record id="view_hr_applicant_search_inherit" model="ir.ui.view">
+            <field name="name">hr.applicant.search.inherit</field>
+            <field name="model">hr.applicant</field>
+            <field name="inherit_id" ref="hr_recruitment.hr_applicant_view_search_bis"/>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="personal_email"/>
+                    <field name="location_add"/>
+                    <field name="apply_date"/>
+                    <field name="appli_status"/>
+                    <field name="qualification"/>
+                    <field name="time_join"/>
+                    <field name="work_exp"/>
+                    <field name="change_reason"/>
+                    <field name="email_confirm"/>
+                    <field name="offer_accept"/>
+
+                    <field name="behaviour_analysis"/>
+                    <field name="company_procedure"/>
+                    <field name="hr_feedback"/>
+                    <field name="mgr_feedback"/>
+                    <field name="remark_msg"/>
+                </search>
+            </field>
+        </record>
+
+
+    </data>
+</odoo>
