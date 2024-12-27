@@ -1,0 +1,166 @@
+<odoo>
+    <data>
+
+
+        <record model="ir.ui.view" id="requirement_list_form">
+            <field name="name">requirement</field>
+            <field name="model">project.custom</field>
+            <field name="arch" type="xml">
+                <form string="Requirement List">
+                    <sheet>
+
+
+                        <group>
+
+                            <field name="sequence_number"/>
+                            <field name="project_id"/>
+                            <field name="area"/>
+                            <field name="sub_area"/>
+                            <field name="req_list"/>
+                            <field name="ref"/>
+                            <field name="req_date"/>
+                            <field name="status_type"/>
+                            <field name="receipt_date"/>
+                            <field name="remark"/>
+                            <field name="attachment_ids" widget="many2many_binary" options="{'filename': 'name'}"/>
+
+
+                            <field name="company_id" invisible="1"/>
+
+                        </group>
+
+
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+
+
+                </form>
+            </field>
+
+        </record>
+        <!-- Define Tree View -->
+        <record model="ir.ui.view" id="requirement_list_tree_view">
+            <field name="name">requirement list tree</field>
+            <field name="model">project.custom</field>
+            <field name="arch" type="xml">
+                <tree>
+
+                    <field name="sequence_number"/>
+                    <field name="project_id"/>
+                    <field name="area"/>
+                    <field name="sub_area"/>
+                    <field name="req_list"/>
+                    <field name="ref"/>
+                    <field name="req_date"/>
+                    <field name="status_type"/>
+                    <field name="receipt_date"/>
+                    <field name="remark"/>
+
+                </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="requirement_list_search_view">
+            <field name="name">requirement list search</field>
+            <field name="model">project.custom</field>
+            <field name="arch" type="xml">
+                <search>
+
+                    <field name="sequence_number"/>
+                    <field name="project_id"/>
+                    <field name="area"/>
+                    <field name="sub_area"/>
+                    <field name="req_list"/>
+                    <field name="ref"/>
+                    <field name="req_date"/>
+                    <field name="status_type"/>
+                    <field name="receipt_date"/>
+                    <field name="remark"/>
+                </search>
+            </field>
+        </record>
+
+
+        <record id="action_view_requirement_list" model="ir.actions.act_window">
+            <field name="name">Requirement List</field>
+            <field name="res_model">project.custom</field>
+            <field name="view_mode">tree,form,pivot,graph,activity</field>
+            <field name="search_view_id" ref="requirement_list_search_view"/>
+            <field name="context">{}</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Click the "New" button to create a new Requirement List.
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="menu_requirement_list"
+                  name="Requirement List"
+                  action="action_view_requirement_list"
+                  parent="project.menu_project_config"
+                  sequence="9"/>
+
+        <record id="view_requirement_list_inherit" model="ir.ui.view">
+            <field name="name">project.project.requirement.inherit</field>
+            <field name="model">project.project</field>
+            <field name="inherit_id" ref="project.edit_project"/>
+            <field name="priority" eval="7"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@name='button_box']" position="inside">
+                    <button class="oe_stat_button" name="action_view_requirement_list" type="object"
+                            icon="fa-file-text-o"
+                            string="Requirement List"/>
+
+
+                </xpath>
+                <xpath expr="//field[@name='date_start']" position="after">
+
+                    <field name="lead_status"/>
+                    <field name="audit_lead"/>
+                </xpath>
+            </field>
+        </record>
+            <!-- Extend Tree View -->
+<!--        <record id="view_project_custom_tree_inherit" model="ir.ui.view">-->
+<!--            <field name="name">project.custom.tree.inherit</field>-->
+<!--            <field name="model">project.project</field>-->
+<!--            <field name="inherit_id" ref="project.project_list_view_group_stage"/>-->
+<!--            <field name="arch" type="xml">-->
+<!--                <xpath expr="//field[@name='user_id']" position="after">-->
+<!--                    <field name="lead_status"/>-->
+<!--                    <field name="audit_lead"/>-->
+<!--                </xpath>-->
+<!--            </field>-->
+<!--        </record>-->
+
+        <!-- Extend Search View -->
+        <record id="view_project_custom_search_inherit" model="ir.ui.view">
+            <field name="name">project.custom.search.inherit</field>
+            <field name="model">project.project</field>
+            <field name="inherit_id" ref="project.view_project_project_filter"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group" position="inside">
+                    <field name="lead_status"/>
+                    <field name="audit_lead"/>
+                </xpath>
+            </field>
+        </record>
+
+<!--        &lt;!&ndash; Extend Pivot View &ndash;&gt;-->
+<!--        <record id="view_project_custom_pivot_inherit" model="ir.ui.view">-->
+<!--            <field name="name">project.custom.pivot.inherit</field>-->
+<!--            <field name="model">project.project</field>-->
+<!--            <field name="inherit_id" ref="project.project_pivot_view"/>-->
+<!--            <field name="arch" type="xml">-->
+<!--                <xpath expr="//field[@name='name']" position="after">-->
+<!--                    <field name="lead_status"/>-->
+<!--                    <field name="audit_lead"/>-->
+<!--                </xpath>-->
+<!--            </field>-->
+<!--        </record>-->
+
+    </data>
+</odoo>
