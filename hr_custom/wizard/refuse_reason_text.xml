@@ -1,0 +1,31 @@
+<odoo>
+    <data>
+        <record id="view_applicant_get_refuse_reason_form_inherit" model="ir.ui.view">
+            <field name="name">applicant.get.refuse.reason.form.inherit</field>
+            <field name="model">applicant.get.refuse.reason</field>
+            <field name="inherit_id" ref="hr_recruitment.applicant_get_refuse_reason_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='refuse_reason_id']" position="after">
+                    <field name="others"/>
+                </xpath>
+
+            </field>
+        </record>
+        <record id="view_hr_applicant_job_wizard_inherit" model="ir.ui.view">
+            <field name="name">hr.applicant.job.wizard.inherit</field>
+            <field name="model">hr.job</field>
+            <field name="inherit_id" ref="hr_recruitment.hr_job_simple_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='name']" position="after">
+                    <field name="start_date"/>
+                    <field name="deadline_date" decoration-danger="is_deadline_passed"/>
+                    <field name="is_deadline_passed" invisible="1"/>
+
+                </xpath>
+
+            </field>
+        </record>
+
+    </data>
+</odoo>
+
