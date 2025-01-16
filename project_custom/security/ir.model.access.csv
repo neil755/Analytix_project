@@ -1,9 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_project_custom,project.custom,model_project_custom,base.group_user,1,1,1,1
-access_area_custom,area.custom,model_area_custom,base.group_user,1,1,1,1
-access_status_custom,status.custom,model_status_custom,base.group_user,1,1,1,1
-access_tb_custom,tb.custom,model_tb_custom,base.group_user,1,1,1,1
-access_lead_status_project_custom,lead.status.project.custom,model_lead_status_project_custom,base.group_user,1,1,1,1
-access_lead_test_project_custom,lead.lead.test.project.custom,model_lead_test_project_custom,base.group_user,1,1,1,1
-
-
