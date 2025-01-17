@@ -1,0 +1,47 @@
+<odoo>
+    <record id="module_category_frontdesk_management" model="ir.module.category">
+        <field name="name">FrontDesk</field>
+        <field name="description">Allows you to manage Walkin-Customers.</field>
+        <field name="sequence">1</field>
+    </record>
+
+    <!-- Define User Group -->
+    <record id="group_frontdesk_user" model="res.groups">
+        <field name="name">User</field>
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        <field name="category_id" ref="module_category_frontdesk_management"/>
+    </record>
+
+    <!-- Define Manager Group -->
+    <record id="group_frontdesk_manager" model="res.groups">
+        <field name="name">Administrator</field>
+        <field name="implied_ids" eval="[(4, ref('group_frontdesk_user'))]"/>
+        <field name="category_id" ref="module_category_frontdesk_management"/>
+    </record>
+
+    <!-- Access Rights for the FrontDesk Model -->
+    <record id="access_frontdesk_user" model="ir.model.access">
+        <field name="name">FrontDesk User Access</field>
+        <field name="model_id" ref="model_frontdesk_frontdesk"/>
+        <field name="group_id" ref="group_frontdesk_user"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_unlink" eval="0"/>
+    </record>
+
+    <record id="access_frontdesk_manager" model="ir.model.access">
+        <field name="name">FrontDesk Manager Access</field>
+        <field name="model_id" ref="model_frontdesk_frontdesk"/>
+        <field name="group_id" ref="group_frontdesk_manager"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+    </record>
+
+    <!-- Restrict Access for Users Without Groups -->
+    <record id="menu_frontdesk_form" model="ir.ui.menu">
+        <field name="groups_id" eval="[(4, ref('group_frontdesk_user'))]"/>
+    </record>
+</odoo>
