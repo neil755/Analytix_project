@@ -1,7 +1,0 @@
-<odoo>
-<!--    <template id="assets_backend" name="frontdesk assets" inherit_id="web.assets_backend">-->
-<!--        <xpath expr="." position="inside">-->
-<!--            <script type="text/javascript" src="/frontdesk/static/src/js/similar_lead_search.js"/>-->
-<!--        </xpath>-->
-<!--    </template>-->
-</odoo>
