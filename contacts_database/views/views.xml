@@ -1,0 +1,243 @@
+<odoo>
+    <data>
+
+        <record model="ir.ui.view" id="contacts_database_form">
+            <field name="name">Contacts Database</field>
+            <field name="model">contacts.database</field>
+            <field name="arch" type="xml">
+                <form string="Contacts Database">
+
+                    <header>
+
+                        <button name="push_to_crm" string="Push to CRM" type="object" class="oe_highlight"
+                                invisible="is_pushed_to_crm"/>
+                        <button name="show_similar_data" string="Show Similar Data" type="object" class="oe_highlight"
+                                invisible="not similar_data_exists"/>
+                    </header>
+                    <field name="similar_data_exists" invisible="1"/>
+                    <field name="is_pushed_to_crm" invisible="1"/>
+
+
+                    <p class="oe_view_nocontent_create">
+                        Enter a new Customer record or select from any of the matching existing records. Matching
+                        records
+                        are displayed as you start typing a Customer's information.
+                        <span style="color: red">If there is no value please add "Nil" to avoid duplication.</span>
+                    </p>
+                    <div>
+
+                        <span style="font-size: 18px; color: red; background-color: yellow;"
+                              invisible="not similar_data_exists">Data Already Exists !
+                        </span>
+                    </div>
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name" placeholder="Client/Company Name" required="True"/>
+                            </h1>
+                            <h3>
+                                <field name="company_name" placeholder="Company Name"/>
+                            </h3>
+                        </div>
+
+                        <group>
+                            <group>
+                                <field name="serial_number" help="Customer Code(contacts_database.serial)"
+                                       readonly="False"/>
+                                <field name="database_name"/>
+                                <field name="job_position"/>
+                                <field name="phone" widget="phone"
+                                       placeholder="Enter Mobile/Phone Number"/>
+                                <field name="whatsapp_no" widget="phone"
+                                       placeholder="Enter WhatsApp Number"/>
+                                <field name="email" widget="email"
+                                       placeholder="Enter Email ID"/>
+                                <field name="linkedin_url" widget="url"/>
+                                <field name="website_name" widget="url"/>
+                                <field name="city"/>
+                                <field name="country"/>
+                                <field name="client_type"/>
+                                <field name="industry_type"/>
+                                <field name="company_size"/>
+                                <field name="industry_type"/>
+                                <field name="related_service"/>
+                                <field name="previous_cross_sell"/>
+                                <field name="customer_category"/>
+                                <field name="engagement_source"/>
+                                <field name="event_participation"/>
+
+                                <field name="marketing_consent"/>
+                                <field name="newsletter_sub"/>
+                                <field name="key_decision"/>
+                                <field name="verified"/>
+
+                                <field name="feedback"/>
+                            </group>
+
+
+                            <group>
+                                <field name="assign_date"/>
+                                <field name="user"/>
+                                <field name="priority_level"/>
+                                <field name="final"/>
+                                <field name="assigned_rep"/>
+                                <field name="payment_terms"/>
+                                <field name="last_contacted"/>
+                                <field name="next_followup"/>
+                                <field name="acq_date"/>
+                                <field name="ref_partner"/>
+                                <field name="preferred_communication"/>
+                                <field name="ext_service"/>
+                                <field name="service_start"/>
+                                <field name="service_end"/>
+                                <field name="inquiries"/>
+                                <field name="campaign"/>
+                                <field name="camp_source"/>
+                                <field name="database_source"/>
+                                <field name="tags_used" widget="many2many_tags"/>
+                                <field name="business_type" widget="many2many_tags"/>
+                                <field name="data_score" widget="percentage"/>
+                            </group>
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+
+
+                </form>
+            </field>
+
+        </record>
+        <!-- Define Tree View -->
+        <record model="ir.ui.view" id="contacts_database_tree_view">
+            <field name="name">contacts database tree</field>
+            <field name="model">contacts.database</field>
+            <field name="arch" type="xml">
+                <tree>
+
+                    <field name="assign_date"/>
+                    <field name="serial_number"/>
+                    <field name="name"/>
+                    <field name="company_name"/>
+                    <field name="database_name"/>
+                    <field name="job_position"/>
+                    <field name="phone"/>
+                    <field name="whatsapp_no"/>
+                    <field name="email"/>
+                    <field name="linkedin_url"/>
+                    <field name="website_name"/>
+                    <field name="city"/>
+                    <field name="country"/>
+                    <field name="client_type"/>
+                    <field name="customer_category"/>
+
+                    <field name="user" widget="many2one_avatar_user"/>
+                    <field name="final"/>
+                    <field name="assigned_rep" widget="many2one_avatar_user"/>
+                    <field name="campaign"/>
+                    <field name="camp_source"/>
+                    <field name="database_source"/>
+                    <field name="tags_used" widget="many2many_tags"/>
+                    <field name="business_type" widget="many2many_tags"/>
+
+
+                    <field name="marketing_consent"/>
+                    <field name="newsletter_sub"/>
+                    <field name="key_decision"/>
+                    <field name="verified"/>
+
+
+                    <field name="company_id"/>
+                    <field name="similar_data_exists"/>
+
+                </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="contacts_database_search_view">
+            <field name="name">contacts database search</field>
+            <field name="model">contacts.database</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="serial_number"/>
+                    <field name="name"/>
+                    <field name="company_name"/>
+                    <field name="database_name"/>
+                    <field name="job_position"/>
+                    <field name="phone"/>
+                    <field name="whatsapp_no"/>
+                    <field name="email"/>
+                    <field name="linkedin_url"/>
+                    <field name="website_name"/>
+                    <field name="city"/>
+                    <field name="country"/>
+                    <field name="client_type"/>
+                    <field name="industry_type"/>
+                    <field name="company_size"/>
+                    <field name="industry_type"/>
+                    <field name="related_service"/>
+                    <field name="previous_cross_sell"/>
+                    <field name="customer_category"/>
+                    <field name="engagement_source"/>
+                    <field name="event_participation"/>
+
+                    <field name="marketing_consent"/>
+                    <field name="newsletter_sub"/>
+                    <field name="key_decision"/>
+                    <field name="verified"/>
+                    <field name="feedback"/>
+
+
+                    <field name="assign_date"/>
+                    <field name="priority_level"/>
+                    <field name="final"/>
+                    <field name="assigned_rep"/>
+                    <field name="payment_terms"/>
+                    <field name="last_contacted"/>
+                    <field name="next_followup"/>
+                    <field name="acq_date"/>
+                    <field name="ref_partner"/>
+                    <field name="preferred_communication"/>
+                    <field name="ext_service"/>
+                    <field name="service_start"/>
+                    <field name="service_end"/>
+                    <field name="inquiries"/>
+                    <field name="camp_source"/>
+                    <field name="database_source"/>
+                    <field name="tags_used"/>
+                    <field name="business_type"/>
+                    <field name="data_score"/>
+
+
+                    <field name="company_id"/>
+                    <field name="similar_data_exists"/>
+                </search>
+            </field>
+        </record>
+
+
+        <record id="action_contacts_database_list" model="ir.actions.act_window">
+            <field name="name">Contacts Database</field>
+            <field name="res_model">contacts.database</field>
+            <field name="view_mode">kanban,tree,form,pivot,graph,activity</field>
+            <field name="view_id" ref="contacts_database_tree_view"/>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Click the "New" button to create a new Contact.
+                </p>
+            </field>
+        </record>
+
+
+        <menuitem id="menu_contacts_database_form"
+                  name="DB Marketing List"
+                  action="action_contacts_database_list"
+                  sequence="10"
+                  web_icon="contacts_database,static/src/img/icon.png"
+                  groups="group_contacts_database_user"/>
+
+
+    </data>
+</odoo>
