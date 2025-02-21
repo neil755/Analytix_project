@@ -1,0 +1,195 @@
+<odoo>
+    <data>
+
+
+        <record id="escalation_sheet_form" model="ir.ui.view">
+            <field name="name">Escalation Sheet</field>
+            <field name="model">escalation.sheet</field>
+            <field name="arch" type="xml">
+                <form string="Escalation Sheet List">
+                    <sheet>
+                        <header>
+
+                            <div class="d-flex justify-content-between align-items-center w-100">
+                                <!-- Buttons on the Left -->
+                                <div class="d-flex gap-2">
+
+                                    <button name="action_progress" type="object" string="Mark In Progress"
+                                            class="btn-primary" invisible="state not in ['new', 'hold','resolved']"/>
+
+                                    <button name="action_hold" type="object" string="Hold" class="btn-warning"
+                                            invisible="state not in ['new', 'in_progress']"/>
+
+                                    <button name="action_resolve" type="object" string="Resolved"
+                                            class="btn-success"
+                                            invisible="state != 'in_progress'"/>
+                                </div>
+                            </div>
+                            <field name="state" widget="statusbar"/>
+                        </header>
+                        <div class="d-flex justify-content-start align-items-center mt-2 gap-2">
+                            <button name="action_reassign_to_level2" type="object" string="Escalate to L2"
+                                    class="btn-primary"
+                                    invisible="state != 'in_progress' or show_reassign_fields_level2"/>
+
+                            <button name="action_reassign_to_level3" type="object" string="Escalate to L3"
+                                    class="btn-primary"
+                                    invisible="state != 'in_progress' or show_reassign_fields_level3"/>
+
+                            <button name="action_reassign_to_level4" type="object" string="Escalate to L4"
+                                    class="btn-primary"
+                                    invisible="state != 'in_progress' or show_reassign_fields_level4"/>
+
+                            <button name="action_reassign_to_level5" type="object" string="Escalate to L5"
+                                    class="btn-primary"
+                                    invisible="state != 'in_progress' or show_reassign_fields_level5"/>
+                        </div>
+                        <br/>
+
+
+                        <group>
+
+                            <field name="created_date"/>
+                            <field name="no_days" optional="hidden"/>
+                            <field name="partner_id" required="True"/>
+                            <field name="project_id" required="True"/>
+                            <field name="milestone_id"/>
+                            <field name="priority"/>
+                            <field name="pri_reason"/>
+                            <field name="level1_remark"/>
+                            <field name="esc_user_id"/>
+                            <field name="user_id"/>
+                            <field name="closed_date"/>
+                            <field name="company_id" invisible="1"/>
+                        </group>
+                        <group>
+                            <field name="show_reassign_fields_level2" invisible="1"/>
+                            <field name="show_reassign_fields_level3" invisible="1"/>
+                            <field name="show_reassign_fields_level4" invisible="1"/>
+                            <field name="show_reassign_fields_level5" invisible="1"/>
+                        </group>
+
+                        <group invisible="show_reassign_fields_level2 == False">
+                            <field name="reassign_level2"/>
+                            <field name="date_level2"/>
+                            <field name="no_days_level2"/>
+                            <field name="level2_remark"/>
+                        </group>
+                        <group invisible="show_reassign_fields_level3 == False">
+                            <field name="reassign_level3"/>
+                            <field name="date_level3"/>
+                            <field name="no_days_level3"/>
+                            <field name="level3_remark"/>
+                        </group>
+                        <group invisible="show_reassign_fields_level4 == False">
+                            <field name="reassign_level4"/>
+                            <field name="date_level4"/>
+                            <field name="no_days_level4"/>
+                            <field name="level4_remark"/>
+                        </group>
+                        <group invisible="show_reassign_fields_level5 == False">
+                            <field name="reassign_level5"/>
+                            <field name="date_level5"/>
+                            <field name="no_days_level5"/>
+                            <field name="level5_remark"/>
+                        </group>
+                        <group>
+                            <field name="remarks"/>
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+
+
+                </form>
+            </field>
+
+        </record>
+        <!-- Define Tree View -->
+        <record model="ir.ui.view" id="escalation_sheet_custom_tree_view">
+            <field name="name">escalation sheet custom tree</field>
+            <field name="model">escalation.sheet</field>
+            <field name="arch" type="xml">
+                <tree>
+
+                    <field name="created_date"/>
+                    <field name="no_days" optional="hidden"/>
+                    <field name="partner_id"/>
+                    <field name="project_id"/>
+                    <field name="milestone_id" optional="hidden"/>
+                    <field name="priority" optional="hidden"/>
+                    <field name="pri_reason" optional="hidden"/>
+                    <field name="level1_remark" optional="hidden"/>
+                    <field name="esc_user_id" optional="hidden"/>
+                    <field name="user_id" optional="hidden"/>
+                    <field name="closed_date" optional="hidden"/>
+                    <field name="remarks" optional="hidden"/>
+                    <field name="reassign_level2" optional="hidden"/>
+                    <field name="date_level2" optional="hidden"/>
+                    <field name="no_days_level2" optional="hidden"/>
+                    <field name="level2_remark" optional="hidden"/>
+                    <field name="reassign_level3" optional="hidden"/>
+                    <field name="date_level3" optional="hidden"/>
+                    <field name="no_days_level3" optional="hidden"/>
+                    <field name="level3_remark" optional="hidden"/>
+                    <field name="reassign_level4" optional="hidden"/>
+                    <field name="date_level4" optional="hidden"/>
+                    <field name="no_days_level4" optional="hidden"/>
+                    <field name="level4_remark" optional="hidden"/>
+                    <field name="reassign_level5" optional="hidden"/>
+                    <field name="date_level5" optional="hidden"/>
+                    <field name="no_days_level5" optional="hidden"/>
+                    <field name="level5_remark" optional="hidden"/>
+                    <field name="company_id" optional="hidden"/>
+
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="escalation_sheet_custom_search_view">
+            <field name="name">escalation sheet custom search</field>
+            <field name="model">escalation.sheet</field>
+            <field name="arch" type="xml">
+                <search>
+
+                    <field name="created_date"/>
+                    <field name="no_days"/>
+                    <field name="partner_id"/>
+                    <field name="project_id"/>
+                    <field name="milestone_id"/>
+                    <field name="priority"/>
+                    <field name="pri_reason"/>
+                    <field name="level1_remark"/>
+                    <field name="esc_user_id"/>
+                    <field name="user_id"/>
+                    <field name="closed_date"/>
+                    <field name="remarks"/>
+                    <field name="company_id"/>
+                </search>
+            </field>
+        </record>
+
+
+        <record id="action_view_escalation_sheet_custom" model="ir.actions.act_window">
+            <field name="name">Escalation Tracker List</field>
+            <field name="res_model">escalation.sheet</field>
+            <field name="view_mode">tree,form,pivot,graph,activity</field>
+            <field name="search_view_id" ref="escalation_sheet_custom_search_view"/>
+            <field name="context">{}</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Click the "New" button to create a new Escalation Sheet.
+                </p>
+            </field>
+        </record>
+        <menuitem id="menuitem_escalation_sheet_custom_view"
+                  name="Escalation Tracker"
+                  parent="project_custom.menu_sale_list_custom"
+                  action="action_view_escalation_sheet_custom"
+                  sequence="30"/>
+
+    </data>
+</odoo>
