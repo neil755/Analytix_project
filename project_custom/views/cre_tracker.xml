@@ -1,0 +1,122 @@
+<odoo>
+    <data>
+
+
+        <record id="cre_tracker_form" model="ir.ui.view">
+            <field name="name">CRE Tracker</field>
+            <field name="model">cre.tracker</field>
+            <field name="arch" type="xml">
+                <form string="CRE Tracker List">
+                    <sheet>
+
+
+                        <group>
+
+                            <field name="serial_number"/>
+                            <field name="req_date"/>
+                            <field name="name"/>
+                            <field name="partner_id"/>
+                            <field name="project_id"/>
+                            <field name="milestone_id"/>
+                            <field name="followup"/>
+                            <field name="priority"/>
+                            <field name="req_user_id"/>
+                            <field name="user_id"/>
+                            <field name="followup_categ"/>
+                            <field name="resolution_status"/>
+                            <field name="followup_date"/>
+                            <field name="remarks"/>
+
+
+                            <field name="company_id" invisible="1"/>
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+
+
+                </form>
+            </field>
+
+        </record>
+        <!-- Define Tree View -->
+        <record model="ir.ui.view" id="cre_tracker_custom_tree_view">
+            <field name="name">cre tracker custom tree</field>
+            <field name="model">cre.tracker</field>
+            <field name="arch" type="xml">
+                <tree>
+
+                    <field name="serial_number" optional="hidden"/>
+                    <field name="req_date"/>
+                    <field name="name"/>
+                    <field name="partner_id"/>
+                    <field name="project_id"/>
+                    <field name="milestone_id" optional="hidden"/>
+                    <field name="write_date" optional="hidden"/>
+                    <field name="write_uid" optional="hidden"/>
+                    <field name="followup" optional="hidden"/>
+                    <field name="priority" optional="hidden"/>
+                    <field name="req_user_id" optional="hidden"/>
+                    <field name="user_id" optional="hidden"/>
+                    <field name="followup_categ" optional="hidden"/>
+                    <field name="resolution_status" optional="hidden"/>
+                    <field name="followup_date" optional="hidden"/>
+                    <field name="remarks" optional="hidden"/>
+
+                    <field name="company_id" optional="hidden"/>
+
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="cre_tracker_custom_search_view">
+            <field name="name">cre tracker custom search</field>
+            <field name="model">cre.tracker</field>
+            <field name="arch" type="xml">
+                <search>
+
+                    <field name="serial_number"/>
+                    <field name="req_date"/>
+                    <field name="name"/>
+                    <field name="partner_id"/>
+                    <field name="project_id"/>
+                    <field name="milestone_id"/>
+                    <field name="followup"/>
+                    <field name="priority"/>
+                    <field name="req_user_id"/>
+                    <field name="user_id"/>
+                    <field name="followup_categ"/>
+                    <field name="resolution_status"/>
+                    <field name="followup_date"/>
+                    <field name="remarks"/>
+
+
+                    <field name="company_id"/>
+                </search>
+            </field>
+        </record>
+
+
+        <record id="action_view_cre_tracker_custom" model="ir.actions.act_window">
+            <field name="name">Follow Up Tracker List</field>
+            <field name="res_model">cre.tracker</field>
+            <field name="view_mode">tree,form,pivot,graph,activity</field>
+            <field name="search_view_id" ref="cre_tracker_custom_search_view"/>
+            <field name="context">{}</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Click the "New" button to create a new CRE Tracker List.
+                </p>
+            </field>
+        </record>
+        <menuitem id="menuitem_cre_tracker_custom_view"
+                  name="Follow Up Tracker"
+                  parent="project_custom.menu_sale_list_custom"
+                  action="action_view_cre_tracker_custom"
+                  sequence="10"/>
+
+    </data>
+</odoo>
