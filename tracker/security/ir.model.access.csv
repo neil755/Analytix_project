@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_audit_tracker,audit.tracker,model_audit_tracker,base.group_user,1,1,1,1
+access_audit_payment_status,audit.payment.status,model_audit_payment_status,base.group_user,1,1,1,1
+access_audit_review_status,audit.review.status,model_audit_review_status,base.group_user,1,1,1,1
