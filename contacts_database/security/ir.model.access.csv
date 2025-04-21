@@ -1,4 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_contacts_database,contacts.database,model_contacts_database,base.group_user,1,1,1,1
-access_database_name,database.name,model_database_name,base.group_user,1,1,1,1
-access_database_payment,database.payment,model_database_payment,base.group_user,1,1,1,1
