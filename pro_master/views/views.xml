@@ -1,0 +1,314 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="pro_master_form">
+            <field name="name">PRO Master Database</field>
+            <field name="model">pro.master</field>
+            <field name="arch" type="xml">
+                <form string="PRO Master File">
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button
+                                    class="oe_stat_button"
+                                    name="recompute_fields"
+                                    type="object"
+                                    string="Refresh Data"
+                                    icon="fa-refresh"
+                                    invisible="not project_id"
+                                    confirm="Are you sure you want to Refresh?"
+                            />
+                            <button
+                                    class="oe_stat_button"
+                                    type="object"
+                                    name="action_pro_master_employee_details"
+                                    string="Employee Details"
+                                    icon="fa-list"
+                                    invisible="not project_id"
+                            />
+                        </div>
+
+                        <group>
+
+                            <field name="name" placeholder="Enter Customer/Company Name"/>
+
+                        </group>
+                        <group>
+
+                            <field name="client_code"/>
+                            <field name="serial_number"/>
+                            <field name="project_id"/>
+                            <field name="salesperson_id"/>
+                            <field name="sale_order_date"/>
+                            <field name="pack_type"/>
+                            <field name="contract_start"/>
+                            <field name="contract_end"/>
+                            <field name="contract_status"/>
+                            <field name="payment_status"/>
+                            <field name="user_ids" widget="many2many_tags"/>
+
+
+                        </group>
+
+                        <notebook groups="pro_master.group_pro_master_manager">
+                            <page string="Company Information:">
+                                <group>
+                                    <field name="company_reg"/>
+                                    <field name="business_type"/>
+                                    <field name="business_activity"/>
+                                    <field name="legal_structure"/>
+                                    <field name="ownership_type"/>
+                                    <field name="vat_no"/>
+                                    <field name="commercial_no"/>
+                                    <field name="date_incorporation"/>
+                                    <field name="country_id"/>
+                                    <field name="shareholder_name"/>
+                                    <field name="bs_code"/>
+                                    <field name="gro_pro_code"/>
+                                    <field name="audit_code"/>
+                                    <field name="ext_code"/>
+                                    <field name="gro_pro_status"/>
+                                </group>
+                            </page>
+
+
+                            <page string="Contact Information:">
+                                <group>
+                                    <field name="primary_contact"/>
+                                    <field name="position"/>
+                                    <field name="phone"/>
+                                    <field name="mobile"/>
+                                    <field name="whatsapp_no"/>
+                                    <field name="email"/>
+                                    <field name="address"/>
+                                    <field name="mail_address"/>
+                                    <field name="website_name"/>
+                                </group>
+                            </page>
+                            <page string="Banking Details:">
+                                <group>
+                                    <field name="bank_name"/>
+                                    <field name="bank_number"/>
+                                    <field name="iban"/>
+                                    <field name="bank_branch"/>
+                                    <field name="currency"/>
+                                    <field name="bank_type"/>
+                                </group>
+                            </page>
+                            <page string="Communication Preferences:">
+                                <group>
+                                    <field name="preferred_language"/>
+                                    <field name="communication_preference"/>
+                                    <field name="contacts_note"/>
+
+                                </group>
+                            </page>
+
+
+                        </notebook>
+
+                        <notebook>
+                            <page string="Company Documents and Expiry:">
+                                <field name="employee_document_ids">
+                                    <tree editable="bottom">
+                                        <field name="document"/>
+                                        <field name="document_no"/>
+                                        <field name="issuing_auth"/>
+                                        <field name="issue_date"/>
+                                        <field name="expiry_date"/>
+                                        <field name="renewal_status"/>
+                                        <field name="attachments_ids" widget="many2many_binary"/>
+                                        <field name="company_note"/>
+                                    </tree>
+                                    <form>
+                                        <group>
+                                            <field name="document"/>
+                                            <field name="document_no"/>
+                                            <field name="issuing_auth"/>
+                                            <field name="issue_date"/>
+                                            <field name="expiry_date"/>
+                                            <field name="renewal_status"/>
+                                            <field name="attachments_ids" widget="many2many_binary"
+                                                   options="{'filename': 'name'}"/>
+                                            <field name="company_note"/>
+                                        </group>
+                                    </form>
+                                </field>
+                            </page>
+                            <page string="Renewals and Notifications:">
+                                <field name="employee_renewal_ids">
+                                    <tree editable="bottom">
+                                        <field name="compliance_name"/>
+                                        <field name="compliance_status"/>
+                                        <field name="filing_date"/>
+                                        <field name="filing_status"/>
+                                        <field name="notification_status"/>
+                                        <field name="compliance_note"/>
+                                    </tree>
+                                    <form>
+                                        <group>
+                                            <field name="compliance_name"/>
+                                            <field name="compliance_status"/>
+                                            <field name="filing_date"/>
+                                            <field name="filing_status"/>
+                                            <field name="notification_status"/>
+                                            <field name="compliance_note"/>
+                                        </group>
+                                    </form>
+                                </field>
+                            </page>
+                            <page string="Login Credentials:">
+                                <field name="employee_login_ids">
+                                    <tree editable="bottom">
+                                        <field name="portal_name"/>
+                                        <field name="user_name"/>
+                                        <field name="password"/>
+                                        <field name="filing_status"/>
+                                        <field name="login_expiry_date"/>
+                                        <field name="login_notes"/>
+                                    </tree>
+                                    <form>
+                                        <group>
+                                            <field name="portal_name"/>
+                                            <field name="user_name"/>
+                                            <field name="password"/>
+                                            <field name="filing_status"/>
+                                            <field name="login_expiry_date"/>
+                                            <field name="login_notes"/>
+                                        </group>
+                                    </form>
+                                </field>
+                            </page>
+
+                            <page string="Monthly Additional Work">
+                                <group>
+                                    <field name="work_name"/>
+                                    <field name="work_detail"/>
+                                    <field name="work_status"/>
+                                    <field name="completed_date"/>
+                                    <field name="work_note"/>
+                                </group>
+                            </page>
+                        </notebook>
+
+                    </sheet>
+
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+
+
+                </form>
+            </field>
+
+        </record>
+
+        <!-- Define Tree View -->
+        <record model="ir.ui.view" id="pro_master_tree_view">
+            <field name="name">pro master tree</field>
+            <field name="model">pro.master</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <header>
+                        <button
+                                name="recompute_fields"
+                                type="object"
+                                string="Refresh All"
+                                class="oe_highlight"
+                                icon="fa-refresh"
+                                confirm="Are you sure you want to refresh all data?"
+                        />
+                    </header>
+                    <field name="name" optional="hidden"/>
+                    <field name="client_code"/>
+                    <field name="serial_number" optional="hidden"/>
+                    <field name="project_id" optional="hidden"/>
+                    <field name="salesperson_id" optional="hidden"/>
+                    <field name="sale_order_date" optional="hidden"/>
+                    <field name="pack_type" optional="hidden"/>
+                    <field name="contract_start" optional="hidden"/>
+                    <field name="contract_end" optional="hidden"/>
+                    <field name="contract_status" optional="hidden"/>
+                    <field name="payment_status" optional="hidden"/>
+                    <field name="user_ids" widget="many2many_tags" optional="hidden"/>
+
+
+                </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="pro_master_search_view">
+            <field name="name">pro master search</field>
+            <field name="model">pro.master</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name"/>
+                    <field name="client_code"/>
+                    <field name="serial_number"/>
+                    <field name="project_id"/>
+                    <field name="salesperson_id"/>
+                    <field name="sale_order_date"/>
+                    <field name="pack_type"/>
+                    <field name="contract_start"/>
+                    <field name="contract_end"/>
+                    <field name="contract_status"/>
+                    <field name="payment_status"/>
+                    <field name="user_ids"/>
+                </search>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="pro_master_employee_details_tree_view">
+            <field name="name">pro master employee details tree</field>
+            <field name="model">pro.master.employee.details</field>
+            <field name="arch" type="xml">
+                <tree editable="bottom">
+                    <field name="employee_name"/>
+                    <field name="employee_designation"/>
+                    <field name="nation_id"/>
+                    <field name="employee_status"/>
+                    <field name="resident_status"/>
+                    <field name="contract_date"/>
+                    <field name="resident_no"/>
+                    <field name="resident_date"/>
+                    <field name="reentry_date"/>
+                    <field name="employee_attachment_ids" widget="many2many_binary" options="{'filename': 'name'}"/>
+
+                </tree>
+            </field>
+        </record>
+
+
+        <record id="action_pro_master" model="ir.actions.act_window">
+            <field name="name">PRO Master File</field>
+            <field name="res_model">pro.master</field>
+            <field name="view_mode">tree,form,pivot,graph,activity</field>
+            <field name="view_id" ref="pro_master_tree_view"/>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Click the "New" button to create a new File.
+                </p>
+            </field>
+        </record>
+        <record id="action_pro_master_employee_details" model="ir.actions.act_window">
+            <field name="name">PRO Master Employee Details</field>
+            <field name="res_model">pro.master.employee.details</field>
+            <field name="view_mode">tree,form,pivot,graph,activity</field>
+            <field name="view_id" ref="pro_master_employee_details_tree_view"/>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Click the "New" button to create a new File.
+                </p>
+            </field>
+        </record>
+
+
+        <menuitem id="menu_pro_master"
+                  name="PRO Master File"
+                  action="action_pro_master"
+                  sequence="10"
+                  web_icon="pro_master,static/src/img/icon.png"
+                  groups="group_pro_master_user"/>
+
+
+    </data>
+</odoo>
