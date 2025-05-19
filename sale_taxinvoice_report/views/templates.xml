@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_taxinvoice_saleorder_raw">
+        <t t-foreach="docs" t-as="doc">
+            <main>
+                <div class="header">
+                    <div class="container" align="center">
+                        <img t-attf-src="/sale_taxinvoice_report/static/description/img/analytix_logo.png"
+                             style="max-width: 10cm;"/>
+
+                        <h4>
+                            <span t-field="doc.company_id"/>
+                        </h4>
+                        <span t-field="doc.company_id.street"/>
+                        <br/>
+                        Phone/Mobile :
+                        <span t-field="doc.company_id.phone"/>
+                        <br/>
+                        Email :
+                        <span t-field="doc.company_id.email"/>
+                        <br/>
+                        Tax ID :
+                        <span t-field="doc.company_id.vat"/>
+                    </div>
+                </div>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <div class="page">
+                    <style type="text/css">
+                        #table_value_border_data {
+                        vertical-align: middle;
+                        border-right: 1px solid black;
+                        border-left: 1px solid black;
+                        border-bottom: 1px solid black;
+                        border-top: 1px solid black;
+                        }
+                        .small-box {
+                        border: 1px solid black;
+                        border-radius: 5px;
+                        padding: 3px 8px;
+                        display: inline-block;
+                        margin-right: 10px;
+                        min-width: 100px;
+                        }
+                    </style>
+                    <t t-if="doc.approval_status != 'approved'">
+                        <h1 align="center">Draft Quotation</h1>
+                    </t>
+                    <div class="row">
+
+                        <strong>Ref No.</strong>
+                        <div class="small-box">
+                            <span t-field="doc.name"/>
+                        </div>
+
+                        <strong>Date</strong>
+                        <div class="small-box" style="margin-right: 20px;">
+                            <span t-field="doc.date_order" t-options="{&quot;widget&quot;: &quot;date&quot;}"/>
+                        </div>
+
+                    </div>
+                    <br/>
+                    To,
+                    <br/>
+                    <span t-field="doc.partner_id.function"/>
+                    <br/>
+                    <span t-field="doc.partner_id"/>
+                    <br/>
+                    <span t-field="doc.partner_id.street"/>
+                    <br/>
+                    <br/>
+                    <table class="table table-borderless" width="100%">
+                        <thead>
+                            <tr>
+                                <td id="table_value_border_data" align="center"
+                                    style="font-weight: bold; background-color: #143359; color: white;">No.
+                                </td>
+                                <td id="table_value_border_data" align="center"
+                                    style="font-weight: bold; background-color: #143359; color: white;">
+                                    Service
+                                    Description
+                                </td>
+                                <td id="table_value_border_data" align="center"
+                                    style="font-weight: bold; background-color: #143359; color: white;">
+                                    HSN CODE
+                                </td>
+                                <td id="table_value_border_data" align="center"
+                                    style="font-weight: bold; background-color: #143359; color: white;">
+                                    Quantity
+                                </td>
+                                 <td id="table_value_border_data" align="center"
+                                    style="font-weight: bold; background-color: #143359; color: white;">
+                                    Unit Price
+                                </td>
+                                <td id="table_value_border_data" align="center"
+                                    style="font-weight: bold; background-color: #143359; color: white;">
+                                    Amount
+                                    <br/>
+                                    (<span t-field="doc.currency_id"/>)
+                                </td>
+                                <td t-if="doc.show_amount_in_usd" id="table_value_border_data" align="center"
+                                    style="font-weight: bold; background-color: #143359; color: white;">
+                                    Amount
+                                    <br/>
+                                    (USD)
+                                </td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-set="sl_no" t-value="0"/>
+                            <t t-set="tot_usd" t-value="0.00"/>
+                            <t t-set="total_price_unit" t-value="0.0"/>
+                            <t t-set="total_discount" t-value="0.0"/>
+                            <t t-foreach="doc.order_line" t-as="o">
+                                <t t-if="o.product_id.name != 'Discount'">
+                                    <t t-set="total_price_unit" t-value="total_price_unit + o.price_unit"/>
+                                </t>
+                                <t t-if="o.product_id.name == 'Discount'">
+                                    <t t-set="total_discount" t-value="total_discount + o.price_unit"/>
+                                </t>
+                                <tr>
+                                    <t t-if="o.product_id.name != 'Discount'">
+                                        <t t-set="sl_no" t-value="sl_no + 1"/>
+                                        <td id="table_value_border_data" align="center">
+                                            <span t-esc="sl_no"/>
+                                        </td>
+                                        <td id="table_value_border_data">
+                                            <span t-field="o.name"/>
+                                        </td>
+                                        <td id="table_value_border_data">
+                                            <span t-field="o.product_id.default_code"/>
+                                        </td>
+                                        <td id="table_value_border_data">
+                                            <span t-field="o.product_uom_qty"/>
+                                        </td>
+                                        <td id="table_value_border_data">
+                                            <span t-field="o.price_unit"/>
+                                        </td>
+                                        <td id="table_value_border_data" align="right">
+                                            <span t-esc="o.price_subtotal"
+                                                  t-options="{'widget': 'float','precision': 2}"/>
+                                        </td>
+                                        <t t-if="doc.show_amount_in_usd" t-set="amount_usd"
+                                           t-value="round(o.price_subtotal/doc.exchange_rate, 0)"/>
+                                        <t t-if="doc.show_amount_in_usd" t-set="tot_usd"
+                                           t-value="tot_usd + amount_usd"/>
+                                        <td t-if="doc.show_amount_in_usd" id="table_value_border_data" align="right">
+                                            <span t-if="doc.exchange_rate != 0.00" t-esc="amount_usd"
+                                                  t-options="{'widget': 'float','precision': 2}"/>
+                                        </td>
+                                    </t>
+                                </tr>
+                            </t>
+                            <t t-set="discount_amt" t-value="total_price_unit - doc.amount_untaxed"/>
+                            <tr t-if="discount_amt > 0.00">
+                                <td colspan="5" id="table_value_border_data" style="font-weight: bold;" align="right">
+                                    Discount
+                                </td>
+                                <td id="table_value_border_data" align="right" style="font-weight: bold;">
+                                    <span t-esc="discount_amt" t-options="{'widget': 'float','precision': 2}"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="5" id="table_value_border_data" style="font-weight: bold;" align="right">
+                                    <span t-field="o.tax_id.name"/>
+                                </td>
+                                <td id="table_value_border_data" align="right" style="font-weight: bold;">
+                                    <span t-esc="doc.amount_tax" t-options="{'widget': 'float','precision': 2}"/>
+                                </td>
+                                <td t-if="doc.show_amount_in_usd" id="table_value_border_data" align="right"
+                                    style="font-weight: bold;">
+                                    <span t-esc="tot_usd" t-options="{'widget': 'float','precision': 2}"/>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td colspan="5" id="table_value_border_data" style="font-weight: bold;" align="right">
+                                    Total
+                                </td>
+                                <td id="table_value_border_data" align="right" style="font-weight: bold;">
+                                    <span t-esc="doc.amount_total" t-options="{'widget': 'float','precision': 2}"/>
+                                </td>
+                                <td t-if="doc.show_amount_in_usd" id="table_value_border_data" align="right"
+                                    style="font-weight: bold;">
+                                    <span t-esc="tot_usd" t-options="{'widget': 'float','precision': 2}"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <t t-set="amount_in_words" t-value="doc.tax_amount_in_words(doc)"/>
+                                <td colspan="6" align="right" style="vertical-align: middle; font-weight: bold;">In
+                                    Words:
+                                    <span t-esc="amount_in_words"/>
+                                    Only
+                                </td>
+                            </tr>
+                            <tr t-if="doc.show_amount_in_usd">
+                                <t t-set="usd_in_words" t-value="doc.amount_doller(tot_usd)"/>
+                                <td colspan="6" align="right" style="vertical-align: middle; font-weight: bold;">In
+                                    Words (USD):
+                                    <span t-esc="usd_in_words"/>
+                                    Only
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <br/>
+                    <span t-field="doc.note"/>
+
+                </div>
+
+                <div class="footer">
+                    <img t-attf-src="/sale_taxinvoice_report/static/description/img/footer.png"
+                         style="max-width: 100%;"/>
+                </div>
+            </main>
+        </t>
+    </template>
+</odoo>
