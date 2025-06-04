@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Automatic Mail Configurations -->
+<!--    <record id="config_no_response_7days" model="automatic.mail.config">-->
+<!--        <field name="name">No Response - 7 Day Reminder</field>-->
+<!--        <field name="stage_ids" eval="[(6, 0, [ref('crm.stage_lead3')])]"/>  &lt;!&ndash; Typically 'Proposition' stage &ndash;&gt;-->
+<!--        <field name="days_after">7</field>-->
+<!--        <field name="mail_template_id" ref="template_no_response_reminder"/>-->
+<!--        <field name="active">True</field>-->
+<!--    </record>-->
+
+<!--    <record id="config_waiting_3days" model="automatic.mail.config">-->
+<!--        <field name="name">Waiting - 3 Day Follow Up</field>-->
+<!--        <field name="stage_ids" eval="[(6, 0, [ref('crm.stage_lead2')])]"/>  &lt;!&ndash; Typically 'Qualified' stage &ndash;&gt;-->
+<!--        <field name="days_after">3</field>-->
+<!--        <field name="mail_template_id" ref="template_waiting_reminder"/>-->
+<!--        <field name="active">True</field>-->
+<!--    </record>-->
+</odoo>
