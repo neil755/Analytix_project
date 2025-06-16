@@ -1,0 +1,141 @@
+<odoo>
+    <data>
+
+        <record id="ext_tracker_form" model="ir.ui.view">
+            <field name="name">EXT Tracker</field>
+            <field name="model">ext.tracker</field>
+            <field name="arch" type="xml">
+                <form string="EXT Tracker">
+                    <sheet>
+                        <group>
+
+                            <field name="ext_number"/>
+                            <field name="client_code"/>
+                            <field name="partner_id"/>
+                            <field name="project_id"/>
+                            <field name="sale_order_date"/>
+                            <field name="salesperson_id"/>
+                            <field name="scope"/>
+                            <field name="user_ids"/>
+                            <field name="contact_name"/>
+                            <field name="phone_number"/>
+                            <field name="nature_work"/>
+                            <field name="amount"/>
+                            <field name="advance_amount"/>
+                            <field name="payment"/>
+                            <field name="payment_due"/>
+                            <field name="payment_status"/>
+                            <field name="payment_remark"/>
+                            <field name="last_followup_date"/>
+                            <field name="next_followup_date"/>
+                            <field name="work_status"/>
+                            <field name="remark"/>
+
+
+                            <field name="company_id" invisible="1"/>
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+
+
+                </form>
+            </field>
+
+        </record>
+
+        <record model="ir.ui.view" id="ext_tracker_custom_tree_view">
+            <field name="name">ext tracker custom tree</field>
+            <field name="model">ext.tracker</field>
+            <field name="arch" type="xml">
+                <tree>
+
+                    <field name="ext_number" optional="hidden"/>
+                    <field name="client_code" optional="hidden"/>
+                    <field name="partner_id" optional="hidden"/>
+                    <field name="project_id" optional="hidden"/>
+                    <field name="sale_order_date" optional="hidden"/>
+                    <field name="salesperson_id" optional="hidden"/>
+                    <field name="scope" optional="hidden"/>
+                    <field name="user_ids" optional="hidden"/>
+                    <field name="contact_name" optional="hidden"/>
+                    <field name="phone_number" optional="hidden"/>
+                    <field name="nature_work" optional="hidden"/>
+                    <field name="amount" optional="hidden"/>
+                    <field name="advance_amount" optional="hidden"/>
+                    <field name="payment" optional="hidden"/>
+                    <field name="payment_due" optional="hidden"/>
+                    <field name="payment_status" optional="hidden"/>
+                    <field name="payment_remark" optional="hidden"/>
+                    <field name="last_followup_date" optional="hidden"/>
+                    <field name="next_followup_date" optional="hidden"/>
+                    <field name="work_status" optional="hidden"/>
+                    <field name="remark" optional="hidden"/>
+                    <field name="write_date" optional="hidden"/>
+                    <field name="write_uid" optional="hidden"/>
+
+
+                    <field name="company_id" optional="hidden"/>
+
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="ext_tracker_custom_search_view">
+            <field name="name">ext tracker custom search</field>
+            <field name="model">ext.tracker</field>
+            <field name="arch" type="xml">
+                <search>
+
+                    <field name="ext_number"/>
+                    <field name="client_code"/>
+                    <field name="partner_id"/>
+                    <field name="project_id"/>
+                    <field name="sale_order_date"/>
+                    <field name="salesperson_id"/>
+                    <field name="scope"/>
+                    <field name="user_ids"/>
+                    <field name="contact_name"/>
+                    <field name="phone_number"/>
+                    <field name="nature_work"/>
+                    <field name="amount"/>
+                    <field name="advance_amount"/>
+                    <field name="payment"/>
+                    <field name="payment_due"/>
+                    <field name="payment_status"/>
+                    <field name="payment_remark"/>
+                    <field name="last_followup_date"/>
+                    <field name="next_followup_date"/>
+                    <field name="work_status"/>
+                    <field name="remark"/>
+
+
+                    <field name="company_id"/>
+                </search>
+            </field>
+        </record>
+
+
+        <record id="action_view_ext_tracker_new_custom" model="ir.actions.act_window">
+            <field name="name">EXT Tracker List</field>
+            <field name="res_model">ext.tracker</field>
+            <field name="view_mode">tree,form,pivot,graph,activity</field>
+            <field name="search_view_id" ref="ext_tracker_custom_search_view"/>
+            <field name="context">{}</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Click the "New" button to create a new EXT Tracker List.
+                </p>
+            </field>
+        </record>
+        <menuitem id="menuitem_ext_tracker_custom_view"
+                  name="EXT Tracker"
+                  parent="project_custom.menu_project_tracker_custom"
+                  action="action_view_ext_tracker_new_custom"
+                  sequence="4"/>
+
+    </data>
+</odoo>
