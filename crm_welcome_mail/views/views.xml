@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_sent_mail_details_form" model="ir.ui.view">
+        <field name="name">sent.mail.details.form</field>
+        <field name="model">sent.mail.details</field>
+        <field name="arch" type="xml">
+            <form string="Sent Mail Details">
+                <sheet>
+                    <group>
+                        <field name="company_id" invisible="1"/>
+                        <field name="salesperson_name"/>
+                        <field name="designation"/>
+                        <field name="phone"/>
+                        <field name="email"/>
+                        <field name="attachment_ids" widget="many2many_binary" options="{'filename': 'name'}"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="view_sent_mail_details_tree" model="ir.ui.view">
+        <field name="name">sent.mail.details.tree</field>
+        <field name="model">sent.mail.details</field>
+        <field name="arch" type="xml">
+            <tree string="Sent Mail Details">
+                <field name="salesperson_name"/>
+                <field name="designation"/>
+                <field name="phone"/>
+                <field name="email"/>
+                <field name="attachment_ids" widget="many2many_tags"/>
+            </tree>
+        </field>
+    </record>
+    <record id="action_sent_mail_details" model="ir.actions.act_window">
+        <field name="name">Leads Auto Mail Reply</field>
+        <field name="res_model">sent.mail.details</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_sent_mail_details_tree"/>
+    </record>
+
+
+    <menuitem id="menu_sent_mail_details" name="Leads Auto Mail Reply" parent="crm.crm_menu_config"
+              action="action_sent_mail_details" sequence="2"/>
+</odoo>

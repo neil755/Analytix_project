@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Mail Templates -->
+<!--    <record id="template_no_response_reminder" model="mail.template">-->
+<!--        <field name="name">No Response - First Reminder</field>-->
+<!--        <field name="model_id" ref="model_crm_lead"/>-->
+<!--        <field name="subject">Follow-up on your inquiry ${object.name}</field>-->
+<!--        <field name="email_from">${user.email or 'noreply@yourcompany.com'}</field>-->
+<!--        <field name="email_to">${object.email_from}</field>-->
+<!--        <field name="body_html"><![CDATA[-->
+<!--            <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">-->
+<!--                <p>Dear ${object.partner_id.name or 'Valued Customer'},</p>-->
+
+<!--                <p>We noticed we haven't heard back from you regarding your inquiry <strong>${object.name}</strong>.</p>-->
+
+<!--                <p>Please let us know if you need any additional information or if we can assist you further.</p>-->
+
+<!--                <p>You can reply directly to this email or contact us at ${user.phone or 'our support number'}.</p>-->
+
+<!--                <p>Best regards,<br/>-->
+<!--                ${user.name}<br/>-->
+<!--                ${user.company_id.name}</p>-->
+
+<!--                <div style="margin-top: 20px; font-size: 12px; color: #777;">-->
+<!--                    <p>If you wish to unsubscribe from these notifications, please <a href="${object.unsubscribe_link}">click here</a>.</p>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        ]]></field>-->
+<!--    </record>-->
+
+<!--    <record id="template_waiting_reminder" model="mail.template">-->
+<!--        <field name="name">Waiting - Follow Up</field>-->
+<!--        <field name="model_id" ref="model_crm_lead"/>-->
+<!--        <field name="subject">We're waiting for your feedback on ${object.name}</field>-->
+<!--        <field name="email_from">${user.email or 'noreply@yourcompany.com'}</field>-->
+<!--        <field name="email_to">${object.email_from}</field>-->
+<!--        <field name="body_html"><![CDATA[-->
+<!--            <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">-->
+<!--                <p>Dear ${object.partner_id.name or 'Valued Customer'},</p>-->
+
+<!--                <p>We're still waiting for your feedback regarding <strong>${object.name}</strong>.</p>-->
+
+<!--                <p>Your input is important to us. Please let us know if:</p>-->
+<!--                <ul>-->
+<!--                    <li>You need more time to decide</li>-->
+<!--                    <li>You have additional questions</li>-->
+<!--                    <li>You'd like to proceed with next steps</li>-->
+<!--                </ul>-->
+
+<!--                <p>Best regards,<br/>-->
+<!--                ${user.name}<br/>-->
+<!--                ${user.company_id.name}</p>-->
+
+<!--                <div style="margin-top: 20px; font-size: 12px; color: #777;">-->
+<!--                    <p>If you wish to unsubscribe from these notifications, please <a href="${object.unsubscribe_link}">click here</a>.</p>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        ]]></field>-->
+<!--    </record>-->
+</odoo>

@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_automatic_mail_config_tree" model="ir.ui.view">
+        <field name="name">automatic.mail.config.tree</field>
+        <field name="model">automatic.mail.config</field>
+        <field name="arch" type="xml">
+            <tree string="Automatic Mail Configurations">
+                <field name="name"/>
+                <field name="stage_ids" widget="many2many_tags"/>
+                <field name="days_after"/>
+                <field name="last_execution"/>
+                <field name="next_execution"/>
+                <field name="active"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_automatic_mail_config_form" model="ir.ui.view">
+        <field name="name">automatic.mail.config.form</field>
+        <field name="model">automatic.mail.config</field>
+        <field name="arch" type="xml">
+            <form string="Automatic Mail Configuration">
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" placeholder="Configuration Name"/>
+                        </h1>
+                    </div>
+
+                    <group>
+                        <group>
+                            <field name="active"/>
+                            <field name="lead_type"/>
+                            <field name="days_after"/>
+                            <field name="stage_ids" widget="many2many_tags" options="{'no_create': True}" required="1"/>
+                            <field name="tag_ids" widget="many2many_tags"/>
+                            <field name="final"/>
+                            <field name="team_id"/>
+                            <field name="user_id"/>
+                        </group>
+                        <group>
+                            <field name="subject" required="1"/>
+                            <field name="email_from"/>
+                            <field name="reply_to"/>
+                            <field name="cc_emails"/>
+                            <field name="company_id"/>
+                            <field name="attachment_ids" widget="many2many_binary" options="{'filename': 'name'}"/>
+                            <field name="last_execution" readonly="1"/>
+                            <field name="next_execution" readonly="1"/>
+                        </group>
+                    </group>
+
+                    <div class="oe_button_box" name="button_box">
+                        <button name="send_test_emails" string="Send Test Emails" type="object" class="oe_stat_button"
+                                icon="fa-envelope"/>
+                        <button name="action_test_configuration" string="Test Configuration" type="object"
+                                class="oe_stat_button" icon="fa-search"/>
+                    </div>
+
+                    <notebook>
+                        <page string="Email Content">
+                            <field name="body_html" widget="html" options="{'editor': 'ace', 'mode': 'qweb'}"
+                                   nolabel="1"/>
+                        </page>
+                        <page string="Filters">
+                            <div class="alert alert-info" role="alert">
+                                <strong>Configuration will automatically send emails:</strong>
+                                <ul>
+                                    <li>When leads stay in selected stages for the specified days</li>
+                                    <li>Only for leads matching the filters (team, user, tags)</li>
+                                    <li>Using the email content defined above</li>
+                                    <li>Each lead will receive the email only once per configuration</li>
+                                </ul>
+                            </div>
+                        </page>
+                        <page string="Logs" invisible="not last_execution">
+                            <field name="message_ids" readonly="1">
+                                <tree>
+                                    <field name="date"/>
+                                    <field name="body"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_crm_lead_form_automatic_mail" model="ir.ui.view">
+        <field name="name">crm.lead.form.automatic.mail</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_lead_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='user_id']" position="after">
+                <field name="stage_entry_date" readonly="1"/>
+                <field name="automatic_mail_count" widget="statinfo" string="Auto Emails"/>
+            </xpath>
+
+        </field>
+    </record>
+
+    <record id="action_automatic_mail_config" model="ir.actions.act_window">
+        <field name="name">Automatic Mail Configurations</field>
+        <field name="res_model">automatic.mail.config</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Configure automatic emails to be sent based on lead stage and duration
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_automatic_mail_config_root"
+              name="Automatic Emails"
+              parent="crm.crm_menu_config"
+              action="action_automatic_mail_config"
+              sequence="20"/>
+
+    <record id="mt_automatic_email" model="mail.message.subtype">
+        <field name="name">Automatic Email</field>
+        <field name="description">Automatic email sent to lead/opportunity</field>
+        <field name="internal">True</field>
+        <field name="sequence">10</field>
+        <field name="res_model">crm.lead</field>
+    </record>
+</odoo>
