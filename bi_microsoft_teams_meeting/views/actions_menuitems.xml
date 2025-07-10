@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <!-- Configuration -->
+    <record id="action_teams_connector" model="ir.actions.act_window">
+        <field name="name">Teams Connector</field>
+        <field name="res_model">teams.connector</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_teams_connection" name="Teams Connection" parent="calendar.calendar_menu_config" action="action_teams_connector" sequence="47"/>
+
+</odoo>
